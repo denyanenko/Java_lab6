@@ -1,0 +1,65 @@
+@startuml
+class Outlet {
+- UUID id
+- UUID electricApplianceId
++ UUID getElectricApplianceId()
++ boolean isUsed()
++ void plugInto(ElectricalAppliance)
++ ElectricalAppliance getElectricalAppliance()
++ void unplug()
+}
+class Microwave {
+}
+class Apartment {
+- List<Outlet> outlets
+~ int plugIntoOutlet(ElectricalAppliance)
++ int plugIntoOutlet(ElectricalAppliance,int)
++ void unplugFromOutlet(int)
++ void unplugFromOutlet(ElectricalAppliance)
++ void addOutlet()
++ double calculatePowerConsumption()
++ ArrayList<ElectricalAppliance> getSortedElectricalAppliance()
++ ArrayList<ElectricalAppliance> findApplianceByElectromagneticRange(double,double)
+}
+class Refrigerator {
+}
+class Main {
++ {static} void main(String[])
+}
+class ElectricKettle {
+}
+abstract class ElectricalAppliance {
+- {static} ArrayList<ElectricalAppliance> electricalAppliances
+- UUID id
+- String name
+- String companyName
+- String modelName
+- double electricCurrent
+- double voltage
+- double electromagneticRadiation
+- UUID outletId
++ UUID getId()
++ String getName()
++ String getCompanyName()
++ String getModelName()
++ double getElectricCurrent()
++ double getVoltage()
++ double getElectromagneticRadiation()
++ double getPower()
++ boolean isTurnedOn()
+~ {static} ElectricalAppliance getElementById(UUID)
++ void turnOn(UUID)
++ void tornOff()
++ String toString()
+}
+
+
+ElectricalAppliance <|-- Microwave
+ElectricalAppliance <|-- Refrigerator
+ElectricalAppliance <|-- ElectricKettle
+Apartment"0...1 " *-- "0...* "Outlet : outlets
+Outlet "0..1 " -- "0..1 " ElectricalAppliance
+
+
+
+@enduml
