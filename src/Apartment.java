@@ -12,7 +12,10 @@ public class Apartment {
         this(10);
     }
 
-    public Apartment(int numberOfOutlets) {
+    public Apartment(int numberOfOutlets) throws IllegalArgumentException  {
+        if (numberOfOutlets < 0) {
+            throw new IllegalArgumentException("Кількість розеток не може бути від'ємною.");
+        }
         outlets = Stream.generate(Outlet::new)
                 .limit(numberOfOutlets)
                 .collect(Collectors.toList());

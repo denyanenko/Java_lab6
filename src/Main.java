@@ -2,7 +2,13 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Apartment apartment = new Apartment();
+        Apartment apartment;
+        try{
+        apartment = new Apartment();}
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return;
+        }
         ArrayList<ElectricalAppliance> electricalAppliances = new ArrayList<>();
         electricalAppliances.add(new ElectricKettle("Philips", "HD9353/90", 9, 220, 0.3));
         electricalAppliances.add(new ElectricKettle("BrandX", "Model123", 8, 230, 0.4));
